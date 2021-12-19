@@ -1,0 +1,44 @@
+package ru.yandex.incoming34.service;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.UUID;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
+import ru.yandex.incoming34.models.Product;
+
+@org.springframework.stereotype.Service
+public class Service {
+	ObjectMapper objectMapper = new ObjectMapper();
+	Map<UUID, Product> products = new HashMap<UUID, Product>();
+	Gson gson = new Gson();
+
+	public JsonNode getProducts() throws JsonProcessingException {
+		String gString = gson.toJson(products);
+		JsonNode jsonNode = objectMapper.readTree(gString);
+		return jsonNode;
+	}
+
+	public void putProduct(Product product) {
+		products.put(UUID.randomUUID(), product);
+
+	}
+
+	public JsonNode getProduct(UUID id) throws JsonProcessingException {
+		Product product = products.get(id);
+		if (Objects.nonNull(product)) {
+			String gString = gson.toJson(product);
+			JsonNode jsonNode = objectMapper.readTree(gString);
+			return jsonNode;
+		} else {
+			return objectMapper.createObjectNode();
+		}
+
+	}
+
+}
