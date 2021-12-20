@@ -34,6 +34,7 @@ public class Controller {
 	@RequestMapping(path = "/show", method = RequestMethod.GET)
 	public ResponseEntity<JsonNode> showProducts() {
 		JsonNode jsonNode = objectMapper.createObjectNode();
+		
 		try {
 			jsonNode = service.getProducts();
 		} catch (JsonProcessingException jsonProcessingException) {
