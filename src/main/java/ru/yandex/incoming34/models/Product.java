@@ -1,5 +1,9 @@
 package ru.yandex.incoming34.models;
 
+import javax.persistence.Entity;
+
+//@Entity
+
 public class Product {
 	
 	String name;
