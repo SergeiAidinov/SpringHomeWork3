@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import ru.yandex.incoming34.dto.ProductDto;
 import ru.yandex.incoming34.models.Product;
 import ru.yandex.incoming34.service.Service;
 
@@ -44,8 +45,8 @@ public class Controller {
 	}
 
 	@RequestMapping(path = "/addProduct", method = RequestMethod.PUT)
-	public HttpStatus putProduct(@RequestBody Product product) {
-		service.putProduct(product);
+	public HttpStatus putProduct(@RequestBody ProductDto productDto) {
+		service.putProduct(productDto);
 		return HttpStatus.OK;
 	}
 	

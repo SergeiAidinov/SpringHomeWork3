@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
+import ru.yandex.incoming34.dto.ProductDto;
 import ru.yandex.incoming34.models.Product;
 import ru.yandex.incoming34.repo.ProductsRepo;
 
@@ -34,8 +35,12 @@ public class Service {
 		return jsonNode;
 	}
 
-	public void putProduct(Product product) {
-		products.put(UUID.randomUUID(), product);
+	public void putProduct(ProductDto productDto) {
+		//products.put(UUID.randomUUID(), product);
+		Product product = new Product(productDto);
+		product.setId(12345L);
+		
+		productsRepo.save(product);
 
 	}
 
