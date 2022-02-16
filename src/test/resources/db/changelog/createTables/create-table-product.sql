@@ -4,8 +4,9 @@
 CREATE TABLE product(
 id BIGINT PRIMARY KEY AUTO_INCREMENT, 
 name VARCHAR(45) UNIQUE NOT NULL,
-price SMALLINT NOT NULL
-
+price SMALLINT NOT NULL,
+categoryId BIGINT NOT NULL,
+FOREIGN KEY (categoryId)  REFERENCES category (id)
 );
 
 --rollback DROP TABLE product;

@@ -6,6 +6,8 @@ import ru.yandex.incoming34.dto.ProductDto;
 import ru.yandex.incoming34.models.Category;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,6 +17,8 @@ import javax.persistence.Table;
 @Table(name = "product")
 public class Product {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	Long id;
 	
 	@Column(name = "name")
@@ -22,6 +26,9 @@ public class Product {
 	
 	@Column(name = "price")
 	int price;
+	
+	@Column(name = "categoryId")
+	int categoryId;
 	/*
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category", referencedColumnName = "id")
@@ -37,7 +44,7 @@ public class Product {
 	public Product(ProductDto productDto) {
 		name = productDto.getName();
 		price = productDto.getPrice();
-		//category = productDto.getCategory();
+		categoryId = productDto.getCategory();
 	}
 	
 	public Long getId() {

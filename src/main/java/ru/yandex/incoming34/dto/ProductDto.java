@@ -4,6 +4,20 @@ import ru.yandex.incoming34.models.Category;
 
 public class ProductDto {
 	
+	String name;
+
+	int price;
+
+	int category;
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -20,6 +34,7 @@ public class ProductDto {
 		this.price = price;
 	}
 
+	/*
 	public Category getCategory() {
 		return category;
 	}
@@ -27,10 +42,6 @@ public class ProductDto {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	*/
 
-	String name;
-	
-	int price;
-	
-	Category category;
 }
