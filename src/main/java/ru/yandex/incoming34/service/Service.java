@@ -20,10 +20,12 @@ import ru.yandex.incoming34.repo.ProductsRepo;
 public class Service {
 	ProductsRepo productsRepo;
 	
+	/*
 	@Autowired
 	public Service(ProductsRepo productsRepo) {
 		this.productsRepo = productsRepo;
 	}
+	*/
 
 	ObjectMapper objectMapper = new ObjectMapper();
 	Map<UUID, Product> products = new HashMap<UUID, Product>();
@@ -40,7 +42,7 @@ public class Service {
 		Product product = new Product(productDto);
 		product.setId(12345L);
 		
-		productsRepo.save(product);
+		//productsRepo.save(product);
 
 	}
 

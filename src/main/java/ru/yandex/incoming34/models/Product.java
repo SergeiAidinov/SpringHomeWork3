@@ -22,16 +22,22 @@ public class Product {
 	
 	@Column(name = "price")
 	int price;
-	
+	/*
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category", referencedColumnName = "id")
-	//@Column(name = "product_category")
+    
+	@Column(name = "product_category")
 	Category category;
+	*/
+	
+	public Product() {
+		
+	}
 	
 	public Product(ProductDto productDto) {
 		name = productDto.getName();
 		price = productDto.getPrice();
-		category = productDto.getCategory();
+		//category = productDto.getCategory();
 	}
 	
 	public Long getId() {
@@ -58,6 +64,7 @@ public class Product {
 		this.price = price;
 	}
 
+	/*
 	public Category getProductCategory() {
 		return category;
 	}
@@ -65,6 +72,7 @@ public class Product {
 	public void setProductCategory(Category category) {
 		this.category = category;
 	}
+	*/
 
 	
 
