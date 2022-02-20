@@ -6,16 +6,23 @@ import ru.yandex.incoming34.dto.ProductDto;
 import ru.yandex.incoming34.models.Category;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "product")
 public class Product {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -25,18 +32,16 @@ public class Product {
 	String name;
 	
 	@Column(name = "price")
-	int price;
+	Integer price;
 	
-	@Column(name = "categoryId")
-	int categoryId;
 	/*
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category", referencedColumnName = "id")
-    
-	@Column(name = "product_category")
-	Category category;
+	@ManyToOne
+	@JoinTable(name = "category")
+	@JoinColumn(name = "category_id")
 	*/
-	
+	@Column(name = "category_id")
+	int categoryId;
+
 	public Product() {
 		
 	}
@@ -44,9 +49,21 @@ public class Product {
 	public Product(ProductDto productDto) {
 		name = productDto.getName();
 		price = productDto.getPrice();
-		categoryId = productDto.getCategory();
+		//categoryId = productDto.getCategoryId();
 	}
-	
+	/*
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+*/
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -71,16 +88,15 @@ public class Product {
 		this.price = price;
 	}
 
-	/*
-	public Category getProductCategory() {
-		return category;
+	
+	public int getProductCategoryId() {
+		return categoryId;
 	}
-
-	public void setProductCategory(Category category) {
-		this.category = category;
+/*
+	public void setProductCategoryId(int category) {
+		categoryId = category;
 	}
 	*/
-
 	
 
 }

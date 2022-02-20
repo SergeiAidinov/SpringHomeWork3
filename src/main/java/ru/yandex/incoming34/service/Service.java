@@ -1,8 +1,11 @@
 package ru.yandex.incoming34.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import ru.yandex.incoming34.repo.ProductsRepo;
 
 @org.springframework.stereotype.Service
 public class Service {
+	
 	ProductsRepo productsRepo;
 	
 	
@@ -31,31 +35,23 @@ public class Service {
 	Map<UUID, Product> products = new HashMap<UUID, Product>();
 	Gson gson = new Gson();
 
-	public JsonNode getProducts() throws JsonProcessingException {
-		String gString = gson.toJson(products);
-		JsonNode jsonNode = objectMapper.readTree(gString);
-		return jsonNode;
+	public List<Product> getProducts() throws JsonProcessingException {
+		Iterable<Product> iterable = productsRepo.findAll();
+		List<Product> products = new ArrayList<Product>();
+				iterable.forEach(p -> products.add(p));
+		return products;
 	}
 
-	public void putProduct(ProductDto productDto) {
-		//products.put(UUID.randomUUID(), product);
-		Product product = new Product(productDto);
-		product.setId(12345L);
-		
+	public void putProduct(Product product) {
+		//Product product = new Product(productDto);
 		productsRepo.save(product);
 
 	}
 
-	public JsonNode getProduct(UUID id) throws JsonProcessingException {
-		Product product = products.get(id);
-		if (Objects.nonNull(product)) {
-			String gString = gson.toJson(product);
-			JsonNode jsonNode = objectMapper.readTree(gString);
-			return jsonNode;
-		} else {
-			return objectMapper.createObjectNode();
-		}
+	public Optional<Product> getProduct(Long id)  {
+		return productsRepo.findById(id);
 
 	}
+	
 
 }

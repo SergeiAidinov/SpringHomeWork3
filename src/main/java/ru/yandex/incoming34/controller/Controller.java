@@ -1,5 +1,7 @@
 package ru.yandex.incoming34.controller;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ import ru.yandex.incoming34.service.Service;
 @RestController
 @RequestMapping("/main")
 public class Controller {
+	
 	ObjectMapper objectMapper = new ObjectMapper();
 	Service service;
 
@@ -33,32 +36,31 @@ public class Controller {
 	}
 
 	@RequestMapping(path = "/show", method = RequestMethod.GET)
-	public ResponseEntity<JsonNode> showProducts() {
-		JsonNode jsonNode = objectMapper.createObjectNode();
-		
-		try {
-			jsonNode = service.getProducts();
-		} catch (JsonProcessingException jsonProcessingException) {
-			return new ResponseEntity<JsonNode>(jsonNode, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<JsonNode>(jsonNode, HttpStatus.OK);
+	public List<Product> showProducts() {
+			try {
+				return  service.getProducts();
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
 	}
 
 	@RequestMapping(path = "/addProduct", method = RequestMethod.PUT)
-	public HttpStatus putProduct(@RequestBody ProductDto productDto) {
-		service.putProduct(productDto);
+	public HttpStatus putProduct(@RequestBody Product product) {
+		//Product product = new Product(productDto);
+		service.putProduct(product);
 		return HttpStatus.OK;
 	}
 	
 	@RequestMapping(path = "/getProductById", method = RequestMethod.GET)
-	public ResponseEntity<JsonNode> getProduct(@RequestParam UUID id) {
-		JsonNode jsonNode = objectMapper.createObjectNode();
-		try {
-			jsonNode = service.getProduct(id);
-		} catch (JsonProcessingException jsonProcessingException) {
-			return new ResponseEntity<JsonNode>(jsonNode, HttpStatus.INTERNAL_SERVER_ERROR);
+	public ResponseEntity<Product> getProduct(@RequestParam Long id) {
+		Optional<Product> optionalProduct = service.getProduct(id);
+		if (optionalProduct.isPresent()) {
+			return new ResponseEntity<Product>(optionalProduct.get(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<JsonNode>(jsonNode, HttpStatus.OK);
 	}
 	
 

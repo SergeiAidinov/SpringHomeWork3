@@ -1,5 +1,9 @@
 package ru.yandex.incoming34.dto;
 
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import ru.yandex.incoming34.models.Category;
 
 public class ProductDto {
@@ -7,15 +11,15 @@ public class ProductDto {
 	String name;
 
 	int price;
+	
+	int categoryId;
 
-	int category;
-
-	public int getCategory() {
-		return category;
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(int category) {
-		this.category = category;
+	public void setCategoryId(int category) {
+		this.categoryId = category;
 	}
 
 	public String getName() {
