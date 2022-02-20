@@ -49,7 +49,7 @@ public class Product {
 	public Product(ProductDto productDto) {
 		name = productDto.getName();
 		price = productDto.getPrice();
-		//categoryId = productDto.getCategoryId();
+		categoryId = productDto.getCategoryId();
 	}
 	/*
 	public Category getCategory() {

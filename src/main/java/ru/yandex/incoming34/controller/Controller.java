@@ -47,8 +47,8 @@ public class Controller {
 	}
 
 	@RequestMapping(path = "/addProduct", method = RequestMethod.PUT)
-	public HttpStatus putProduct(@RequestBody Product product) {
-		//Product product = new Product(productDto);
+	public HttpStatus putProduct(@RequestBody ProductDto productDto) {
+		Product product = new Product(productDto);
 		service.putProduct(product);
 		return HttpStatus.OK;
 	}
