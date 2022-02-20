@@ -5,10 +5,7 @@ CREATE TABLE product(
 id BIGINT AUTO_INCREMENT, 
 name VARCHAR(45) UNIQUE NOT NULL,
 price SMALLINT NOT NULL,
-category_id SMALLINT NOT NULL,
-PRIMARY KEY (id),
-INDEX (category_id),
-FOREIGN KEY (category_id) REFERENCES category (id) ON UPDATE RESTRICT
+PRIMARY KEY (id)
 );
 
 --rollback DROP TABLE product;

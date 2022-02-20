@@ -1,38 +1,23 @@
-package ru.yandex.incoming34.service;
+package ru.yandex.incoming34.Dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-
-import ru.yandex.incoming34.dto.ProductDto;
 import ru.yandex.incoming34.models.Product;
 import ru.yandex.incoming34.repo.ProductsRepo;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class ProductDao {
 	
 	ProductsRepo productsRepo;
 	
-	
 	@Autowired
-	public Service(ProductsRepo productsRepo) {
+	public ProductDao(ProductsRepo productsRepo) {
 		this.productsRepo = productsRepo;
 	}
-
-	ObjectMapper objectMapper = new ObjectMapper();
-	Map<UUID, Product> products = new HashMap<UUID, Product>();
-	Gson gson = new Gson();
 
 	public List<Product> getProducts() {
 		Iterable<Product> iterable = productsRepo.findAll();
@@ -42,13 +27,28 @@ public class Service {
 	}
 
 	public void putProduct(Product product) {
-		productsRepo.save(product);
+		if (productsRepo.countById(product.getId()) == 0) {
+			productsRepo.save(product);
+		} else {
+			productsRepo.deleteById(product.getId());
+			productsRepo.save(product);
+		}
 
 	}
 
 	public Optional<Product> getProduct(Long id)  {
 		return productsRepo.findById(id);
 
+	}
+
+	public void removeProductById(Long id) {
+		productsRepo.deleteById(id);
+		
+	}
+
+	public void countById(Long id) {
+		productsRepo.countById(id);
+		
 	}
 
 }

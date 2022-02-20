@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import ru.yandex.incoming34.dto.ProductDto;
-
 @Entity
 @Table(name = "product")
 public class Product {
@@ -24,26 +22,8 @@ public class Product {
 	@Column(name = "price")
 	private Integer price;
 	
-	
-	@Column(name = "category_id")
-	private int categoryId;
-
 	public Product() {
 		
-	}
-	
-	public Product(ProductDto productDto) {
-		name = productDto.getName();
-		price = productDto.getPrice();
-		categoryId = productDto.getCategoryId();
-	}
-
-	public int getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
 	}
 
 	public void setId(Long id) {
