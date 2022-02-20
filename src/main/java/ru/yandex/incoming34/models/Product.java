@@ -1,23 +1,13 @@
 package ru.yandex.incoming34.models;
 
-import javax.persistence.CascadeType;
-
-import ru.yandex.incoming34.dto.ProductDto;
-import ru.yandex.incoming34.models.Category;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.lang.NonNull;
+import ru.yandex.incoming34.dto.ProductDto;
 
 @Entity
 @Table(name = "product")
@@ -26,21 +16,17 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	Long id;
+	private Long id;
 	
 	@Column(name = "name")
-	String name;
+	private String name;
 	
 	@Column(name = "price")
-	Integer price;
+	private Integer price;
 	
-	/*
-	@ManyToOne
-	@JoinTable(name = "category")
-	@JoinColumn(name = "category_id")
-	*/
+	
 	@Column(name = "category_id")
-	int categoryId;
+	private int categoryId;
 
 	public Product() {
 		
@@ -51,25 +37,21 @@ public class Product {
 		price = productDto.getPrice();
 		categoryId = productDto.getCategoryId();
 	}
-	/*
-	public Category getCategory() {
-		return category;
+
+	public int getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-*/
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
-	public Long getId() {
-		return id;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getName() {
@@ -80,23 +62,12 @@ public class Product {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
-
-	
-	public int getProductCategoryId() {
-		return categoryId;
-	}
-/*
-	public void setProductCategoryId(int category) {
-		categoryId = category;
-	}
-	*/
-	
 
 }

@@ -29,13 +29,12 @@ public class Service {
 	public Service(ProductsRepo productsRepo) {
 		this.productsRepo = productsRepo;
 	}
-	
 
 	ObjectMapper objectMapper = new ObjectMapper();
 	Map<UUID, Product> products = new HashMap<UUID, Product>();
 	Gson gson = new Gson();
 
-	public List<Product> getProducts() throws JsonProcessingException {
+	public List<Product> getProducts() {
 		Iterable<Product> iterable = productsRepo.findAll();
 		List<Product> products = new ArrayList<Product>();
 				iterable.forEach(p -> products.add(p));
@@ -43,7 +42,6 @@ public class Service {
 	}
 
 	public void putProduct(Product product) {
-		//Product product = new Product(productDto);
 		productsRepo.save(product);
 
 	}
@@ -52,6 +50,5 @@ public class Service {
 		return productsRepo.findById(id);
 
 	}
-	
 
 }

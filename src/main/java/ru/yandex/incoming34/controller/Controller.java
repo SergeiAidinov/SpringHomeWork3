@@ -37,13 +37,7 @@ public class Controller {
 
 	@RequestMapping(path = "/show", method = RequestMethod.GET)
 	public List<Product> showProducts() {
-			try {
 				return  service.getProducts();
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return null;
-			}
 	}
 
 	@RequestMapping(path = "/addProduct", method = RequestMethod.PUT)
@@ -62,6 +56,5 @@ public class Controller {
 			return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
 		}
 	}
-	
 
 }
