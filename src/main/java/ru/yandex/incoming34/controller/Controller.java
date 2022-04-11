@@ -13,25 +13,29 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import ru.yandex.incoming34.Dao.ProductDao;
+import ru.yandex.incoming34.dao.ProductDao;
+import ru.yandex.incoming34.dto.ProductDto;
 import ru.yandex.incoming34.models.Product;
+import ru.yandex.incoming34.service.ProductService;
 
 @Api
 @RestController
 @RequestMapping("/main")
 public class Controller {
 	
-	ObjectMapper objectMapper = new ObjectMapper();
-	ProductDao productDao;
+	private final ProductDao productDao;
+	private final ProductService productService;
 
 	@Autowired
-	public Controller(ProductDao service) {
-		this.productDao = service;
+	public Controller(ProductDao productDao, ProductService productService) {
+		this.productService = productService;
+		this.productDao = productDao;
+		
 	}
 
 	@RequestMapping(path = "/all_products", method = RequestMethod.GET)
-	public List<Product> showProducts() {
-				return  productDao.getProducts();
+	public List<ProductDto> showProducts() {
+				return productService.showAllProducts();
 	}
 	
 	@RequestMapping(path = "/delete_products", method = RequestMethod.GET)

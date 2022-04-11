@@ -21,7 +21,7 @@ public class Configuration {
 	
 	@Bean
     public DataSource getDataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName(driver);
         dataSourceBuilder.url(url);
         dataSourceBuilder.username(userName);

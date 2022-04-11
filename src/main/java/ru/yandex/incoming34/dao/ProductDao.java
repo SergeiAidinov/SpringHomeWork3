@@ -1,4 +1,4 @@
-package ru.yandex.incoming34.Dao;
+package ru.yandex.incoming34.dao;
 
 import java.util.ArrayList;
 import java.util.List;
