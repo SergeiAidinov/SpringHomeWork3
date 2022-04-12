@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import ru.yandex.incoming34.models.Product;
+import ru.yandex.incoming34.entities.Product;
 import ru.yandex.incoming34.repo.ProductsRepo;
 
 @org.springframework.stereotype.Service
@@ -20,7 +20,7 @@ public class ProductDao {
 	}
 
 	public List<Product> getProducts() {
-		Iterable<Product> iterable = productsRepo.findAll();
+		Iterable<Product> iterable = productsRepo.findAllProducts();
 		List<Product> products = new ArrayList<Product>();
 				iterable.forEach(p -> products.add(p));
 		return products;
@@ -37,7 +37,8 @@ public class ProductDao {
 	}
 
 	public Optional<Product> getProduct(Long id)  {
-		return productsRepo.findById(id);
+		return null;
+				//productsRepo.findById(id);
 
 	}
 

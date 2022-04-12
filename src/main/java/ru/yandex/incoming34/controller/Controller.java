@@ -15,7 +15,7 @@ import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import ru.yandex.incoming34.dao.ProductDao;
 import ru.yandex.incoming34.dto.ProductDto;
-import ru.yandex.incoming34.models.Product;
+import ru.yandex.incoming34.entities.Product;
 import ru.yandex.incoming34.service.ProductService;
 
 @Api

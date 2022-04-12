@@ -1,20 +1,10 @@
-package ru.yandex.incoming34.models;
+package ru.yandex.incoming34.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "product")
-public class Product {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "product_id")
-	private Long id;
+public class Product extends AbstractProduct {
 	
 	@Column(name = "product_name")
 	private String name;
@@ -24,14 +14,6 @@ public class Product {
 	
 	public Product() {
 		
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public String getName() {
