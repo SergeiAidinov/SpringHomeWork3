@@ -9,7 +9,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
-@ComponentScan({"ru.yandex.incoming34.controller", "ru.yandex.incoming34.models", "ru.yandex.incoming34.service"})
+@ComponentScan({"ru.yandex.incoming34.controller", "ru.yandex.incoming34.entities", "ru.yandex.incoming34.service"})
 public class SwaggerConfig {
 	@Bean
     public Docket api() { 
