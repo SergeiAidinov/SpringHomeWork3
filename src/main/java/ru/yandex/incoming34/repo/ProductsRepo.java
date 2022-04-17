@@ -6,6 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ru.yandex.incoming34.entities.AbstractProduct;
 import ru.yandex.incoming34.entities.Product;
+import ru.yandex.incoming34.entities.ProductFull;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface ProductsRepo extends CrudRepository<AbstractProduct, Long>{
 	List<Product> findAllProducts();
 
 	@Query(nativeQuery = true, value = "SELECT product_id, product_name, price FROM product")
-	<ProductFull>List<ProductFull> findAllProductsWithCategories();
+	List<ProductFull> findAllProductsWithCategories();
 }

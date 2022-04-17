@@ -4,12 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "category")
 public class ProductFull extends AbstractProduct{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Long id;
 
     @Column(name = "product_name")
     private String name;
@@ -22,18 +18,7 @@ public class ProductFull extends AbstractProduct{
             name = "link_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categoryList;
-
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private List<CategoryBrief> categoryList;
 
     public String getName() {
         return name;
@@ -55,20 +40,15 @@ public class ProductFull extends AbstractProduct{
 
     }
 
-    public ProductFull(List<Category> categoryList) {
+    public ProductFull(List<CategoryBrief> categoryList) {
         this.categoryList = categoryList;
     }
 
-
-
-
-
-
-    public List<Category> getCategoryList() {
+    public List<CategoryBrief> getCategoryList() {
         return categoryList;
     }
 
-    public void setCategoryList(List<Category> categoryList) {
+    public void setCategoryList(List<CategoryBrief> categoryList) {
         this.categoryList = categoryList;
     }
 }

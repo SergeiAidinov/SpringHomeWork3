@@ -41,7 +41,7 @@ public class ProductService {
 
 
     public <ProductFull> List<ProductFull> showAllProductsWithCategories() {
-		return productRepo.findAllProductsWithCategories();
+		return (List<ProductFull>) productRepo.findAllProductsWithCategories();
 
     }
 }

@@ -1,7 +1,7 @@
 package ru.yandex.incoming34.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product extends AbstractProduct {
@@ -31,17 +31,20 @@ public class Product extends AbstractProduct {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-/*
-	@ManyToMany
-	private Collection<Category> categories;
 
-	public Collection<Category> getCategories() {
+	@ManyToMany
+	@JoinTable(name = "link_product_category",
+			joinColumns = @JoinColumn(name = "product_id"),
+			inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private List<Category> categories;
+
+	public List<Category> getCategories() {
 		return categories;
 	}
 
-	public void setCategories(Collection<Category> categories) {
+	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
- */
+
 }
