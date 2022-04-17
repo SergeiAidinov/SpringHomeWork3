@@ -1,14 +1,14 @@
 package ru.yandex.incoming34.repo;
 
-import java.util.List;
-
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
 import ru.yandex.incoming34.entities.AbstractProduct;
 import ru.yandex.incoming34.entities.Product;
+
+import java.util.List;
+
 @PropertySource("classpath:SpringHomeWork3.properties")
 @Repository
 public interface ProductsRepo extends CrudRepository<AbstractProduct, Long>{
@@ -18,6 +18,7 @@ public interface ProductsRepo extends CrudRepository<AbstractProduct, Long>{
 	
 	@Query(nativeQuery = true, value = "SELECT product_id, product_name, price FROM product")
 	List<Product> findAllProducts();
-	
-	
+
+	@Query(nativeQuery = true, value = "SELECT product_id, product_name, price FROM product")
+	<ProductFull>List<ProductFull> findAllProductsWithCategories();
 }

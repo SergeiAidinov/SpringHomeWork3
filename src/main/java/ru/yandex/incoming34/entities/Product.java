@@ -31,5 +31,17 @@ public class Product extends AbstractProduct {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+/*
+	@ManyToMany
+	private Collection<Category> categories;
 
+	public Collection<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Collection<Category> categories) {
+		this.categories = categories;
+	}
+
+ */
 }
