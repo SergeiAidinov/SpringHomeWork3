@@ -1,5 +1,7 @@
 package ru.yandex.incoming34.entities;
 
+import ru.yandex.incoming34.entities.product.ProductBrief;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class Category extends AbstractCategory{
     @JoinTable(name = "link_product_category",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> productList;
+    private List<ProductBrief> productList;
 
 
 
@@ -38,11 +40,11 @@ public class Category extends AbstractCategory{
         this.catergoryName = catergoryName;
     }
 
-    public List<Product> getProductList() {
+    public List<ProductBrief> getProductList() {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
+    public void setProductList(List<ProductBrief> productList) {
         this.productList = productList;
     }
 
