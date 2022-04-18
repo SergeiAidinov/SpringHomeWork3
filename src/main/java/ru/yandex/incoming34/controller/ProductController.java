@@ -32,7 +32,7 @@ public class ProductController {
 		
 	}
 
-	@RequestMapping(path = "/all_products", method = RequestMethod.GET)
+	@RequestMapping(path = "/all_brief_products", method = RequestMethod.GET)
 	public List<ProductDto> showProducts() {
 				return productService.showAllProducts();
 	}

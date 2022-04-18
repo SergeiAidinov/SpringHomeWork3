@@ -18,7 +18,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/all-categories")
+    @GetMapping("/all_categories_with__goods")
     public List<Category> getAllCategories() {
         List<Category> categoryList = new ArrayList<>();
         categoryService.getAllCategories().forEach(categoryList::add);
