@@ -20,7 +20,15 @@ public class ProductFull extends AbstractProduct {
             name = "link_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<CategoryBrief> categoryList;
+    private List<CategoryBrief> categoryBriefList;
+
+    public ProductFull() {
+
+    }
+
+    public ProductFull(List<CategoryBrief> categoryBriefList) {
+        this.categoryBriefList = categoryBriefList;
+    }
 
     public String getName() {
         return name;
@@ -38,19 +46,11 @@ public class ProductFull extends AbstractProduct {
         this.price = price;
     }
 
-    public ProductFull() {
-
-    }
-
-    public ProductFull(List<CategoryBrief> categoryList) {
-        this.categoryList = categoryList;
-    }
-
     public List<CategoryBrief> getCategoryList() {
-        return categoryList;
+        return categoryBriefList;
     }
 
-    public void setCategoryList(List<CategoryBrief> categoryList) {
-        this.categoryList = categoryList;
+    public void setCategoryList(List<CategoryBrief> categoryBriefList) {
+        this.categoryBriefList = categoryBriefList;
     }
 }

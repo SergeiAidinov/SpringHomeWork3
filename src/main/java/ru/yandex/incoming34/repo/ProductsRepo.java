@@ -26,9 +26,6 @@ String queryForAllProduct = "SELECT product_id, product_name, price FROM product
 	@Query(nativeQuery = true, value = queryForAllProduct)
 	List<ProductBrief> findAllBriefProducts();
 
-	@Query(nativeQuery = true, value = queryForAllProduct)
-	List<ProductFull> findAllProductsWithCategories();
-
 	@Query(nativeQuery = true, value = queryForProductById)
 	Optional<ProductFull> findProductFullById(Long id);
 
