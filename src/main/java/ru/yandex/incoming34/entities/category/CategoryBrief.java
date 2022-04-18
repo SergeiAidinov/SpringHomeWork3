@@ -1,4 +1,4 @@
-package ru.yandex.incoming34.entities;
+package ru.yandex.incoming34.entities.category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
-public class CategoryBrief extends AbstractCategory{
+public class CategoryBrief extends AbstractCategory {
 
     @Column(name = "category_name")
     private String catergoryName;

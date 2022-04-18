@@ -1,7 +1,5 @@
 package ru.yandex.incoming34.entities.product;
 
-import ru.yandex.incoming34.entities.AbstractProduct;
-
 import javax.persistence.*;
 
 @Entity

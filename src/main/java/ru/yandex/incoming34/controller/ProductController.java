@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.incoming34.dao.ProductDao;
-import ru.yandex.incoming34.dto.ProductDto;
-import ru.yandex.incoming34.entities.Product;
+import ru.yandex.incoming34.dto.ProductBriefDto;
+import ru.yandex.incoming34.entities.product.ProductFull;
 import ru.yandex.incoming34.service.ProductService;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public class ProductController {
 	}
 
 	@RequestMapping(path = "/all_brief_products", method = RequestMethod.GET)
-	public List<ProductDto> showProducts() {
+	public List<ProductBriefDto> showProducts() {
 				return productService.showAllProducts();
 	}
 
@@ -48,20 +48,20 @@ public class ProductController {
 	}
 
 	@RequestMapping(path = "/new_product", method = RequestMethod.PUT)
-	public HttpStatus putProduct(@RequestBody Product product) {
-		productDao.countById(product.getId());
+	public HttpStatus putProduct(@RequestBody ProductFull productFull) {
+		productDao.countById(productFull.getId());
 		
-		productDao.putProduct(product);
+		productDao.putProduct(productFull);
 		return HttpStatus.OK;
 	}
 	
 	@RequestMapping(path = "/product_by_id", method = RequestMethod.GET)
-	public ResponseEntity<Product> getProduct(@RequestParam Long id) {
-		Optional<Product> optionalProduct = productDao.getProduct(id);
+	public ResponseEntity<ProductFull> getProduct(@RequestParam Long id) {
+		Optional<ProductFull> optionalProduct = productService.getProductFullById(id);
 		if (optionalProduct.isPresent()) {
-			return new ResponseEntity<Product>(optionalProduct.get(), HttpStatus.OK);
+			return new ResponseEntity<ProductFull>(optionalProduct.get(), HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<ProductFull>(HttpStatus.NO_CONTENT);
 		}
 	}
 

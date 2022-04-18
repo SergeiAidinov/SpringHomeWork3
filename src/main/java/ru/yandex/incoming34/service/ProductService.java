@@ -2,19 +2,20 @@ package ru.yandex.incoming34.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.yandex.incoming34.dto.ProductDto;
+import ru.yandex.incoming34.dto.ProductBriefDto;
+import ru.yandex.incoming34.entities.product.ProductFull;
 import ru.yandex.incoming34.repo.ProductsRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
 	
 	private final ProductsRepo productRepo;
 	private final Convertor convertor;
-	//private final ModelMapper modelMapper = new ModelMapper();
-	
+
 	@Autowired
 	public ProductService(ProductsRepo productRepo, Convertor convertor) {
 		this.productRepo = productRepo;
@@ -22,20 +23,20 @@ public class ProductService {
 		
 	}
 
-	public List<ProductDto> showAllProducts(){
+	public List<ProductBriefDto> showAllProducts(){
 		//return (productRepo.findAllProducts());
-		List<ProductDto> productDtos = new ArrayList<ProductDto>();
-		productRepo.findAllProducts().stream().forEach
+		List<ProductBriefDto> productBriefDtos = new ArrayList<ProductBriefDto>();
+		productRepo.findAllBriefProducts().stream().forEach
 				(p -> {
 					
-					ProductDto productDto = convertor.convertToDto(p);
-					productDtos.add(productDto);
+					ProductBriefDto productBriefDto = convertor.convertProductBriefToDto(p);
+					productBriefDtos.add(productBriefDto);
 				}
 				);
 				//.collect(Collectors.toList())
 				;
 		
-		return productDtos;
+		return productBriefDtos;
 		
 	}
 
@@ -44,4 +45,9 @@ public class ProductService {
 		return (List<ProductFull>) productRepo.findAllProductsWithCategories();
 
     }
+
+	public Optional<ProductFull> getProductFullById(Long id) {
+
+		return productRepo.findProductFullById(id);
+	}
 }

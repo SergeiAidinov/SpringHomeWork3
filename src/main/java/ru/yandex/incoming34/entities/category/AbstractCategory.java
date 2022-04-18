@@ -1,4 +1,4 @@
-package ru.yandex.incoming34.entities;
+package ru.yandex.incoming34.entities.category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

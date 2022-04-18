@@ -1,5 +1,6 @@
-package ru.yandex.incoming34.entities;
+package ru.yandex.incoming34.entities.category;
 
+import ru.yandex.incoming34.entities.category.AbstractCategory;
 import ru.yandex.incoming34.entities.product.ProductBrief;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
-public class Category extends AbstractCategory{
+public class Category extends AbstractCategory {
 
     @Id
     @Column(name = "category_id")

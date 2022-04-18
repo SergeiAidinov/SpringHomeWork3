@@ -1,11 +1,13 @@
-package ru.yandex.incoming34.entities;
+package ru.yandex.incoming34.entities.product;
+
+import ru.yandex.incoming34.entities.category.CategoryBrief;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "category")
-public class ProductFull extends AbstractProduct{
+public class ProductFull extends AbstractProduct {
 
     @Column(name = "product_name")
     private String name;
