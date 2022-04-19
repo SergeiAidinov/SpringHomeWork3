@@ -4,11 +4,14 @@ import javax.persistence.*;
 
 @Entity
 public class ProductBrief extends AbstractProduct {
+    /*
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
 
+     */
+/*
     public Long getId() {
         return id;
     }
@@ -16,6 +19,8 @@ public class ProductBrief extends AbstractProduct {
     public void setId(Long id) {
         this.id = id;
     }
+
+ */
 
     @Column(name = "product_name")
     private String name;

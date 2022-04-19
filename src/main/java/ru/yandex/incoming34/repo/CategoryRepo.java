@@ -17,4 +17,8 @@ public interface CategoryRepo extends CrudRepository <AbstractCategory, Long>{
 
     @Query(nativeQuery = true, value = "SELECT category_id, category_name FROM category")
     Iterable<CategoryBrief> findAllBriefCategories();
+
+    @Query(nativeQuery = true, value = "SELECT category_id, category_name FROM category WHERE category_id = ?1")
+    CategoryBrief findBriefCategoryById(Long id);
+
 }

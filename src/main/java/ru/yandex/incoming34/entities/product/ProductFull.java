@@ -46,11 +46,11 @@ public class ProductFull extends AbstractProduct {
         this.price = price;
     }
 
-    public List<CategoryBrief> getCategoryList() {
+    public List<CategoryBrief> getCategoryBriefList() {
         return categoryBriefList;
     }
 
-    public void setCategoryList(List<CategoryBrief> categoryBriefList) {
+    public void setCategoryBrifList(List<CategoryBrief> categoryBriefList) {
         this.categoryBriefList = categoryBriefList;
     }
 }

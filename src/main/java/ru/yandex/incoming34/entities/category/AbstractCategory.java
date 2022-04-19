@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
-public class AbstractCategory {
+public abstract class AbstractCategory {
 
     @Id
     @Column(name = "category_id")
