@@ -3,16 +3,15 @@ package ru.yandex.incoming34.entities.product;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class ProductBrief extends AbstractProduct {
-    /*
+@Table(name ="product")
+public class ProductBrief /*extends AbstractProduct*/ {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
 
-     */
-/*
+
     public Long getId() {
         return id;
     }
@@ -21,7 +20,7 @@ public class ProductBrief extends AbstractProduct {
         this.id = id;
     }
 
- */
+
 
     @Column(name = "product_name")
     private String name;

@@ -9,6 +9,7 @@ import ru.yandex.incoming34.entities.category.CategoryBrief;
 import ru.yandex.incoming34.entities.product.ProductFull;
 import ru.yandex.incoming34.repo.CategoryBriefRepo;
 import ru.yandex.incoming34.repo.CategoryRepo;
+import ru.yandex.incoming34.repo.ProductBriefRepo;
 import ru.yandex.incoming34.repo.ProductsRepo;
 
 import java.util.ArrayList;
@@ -22,20 +23,26 @@ public class ProductService {
     private final ProductsRepo productRepo;
     private final CategoryRepo categoryRepo;
     private final CategoryBriefRepo categoryBriefRepo;
+    private final ProductBriefRepo productBriefRepo;
     private final Convertor convertor;
 
     @Autowired
-    public ProductService(ProductsRepo productRepo, Convertor convertor, CategoryRepo categoryRepo, CategoryBriefRepo categoryBriefRepo) {
+    public ProductService(ProductsRepo productRepo, Convertor convertor, CategoryRepo categoryRepo, CategoryBriefRepo categoryBriefRepo, ProductBriefRepo productBriefRepo) {
         this.productRepo = productRepo;
         this.convertor = convertor;
-        this.categoryRepo =  categoryRepo;
+        this.categoryRepo = categoryRepo;
         this.categoryBriefRepo = categoryBriefRepo;
+        this.productBriefRepo = productBriefRepo;
     }
 
     public List<ProductBriefDto> showAllBriefProducts() {
-        return productRepo.findAllBriefProducts().stream()
-                .map(productBrief -> convertor.convertProductBriefToDto(productBrief))
-                .collect(Collectors.toList());
+        List<ProductBriefDto> productBriefDtoList = new ArrayList<>();
+        productBriefRepo.findAll().forEach(productBrief -> {
+            ProductBriefDto productBriefDto =
+                    convertor.convertProductBriefToDto(productBrief);
+            productBriefDtoList.add(productBriefDto);
+        });
+        return productBriefDtoList;
 
     }
 
@@ -45,8 +52,8 @@ public class ProductService {
         return
 
                 productFullList.stream()
-                .map(productFull -> convertor.convertProductFullToDto(productFull))
-                .collect(Collectors.toList());
+                        .map(productFull -> convertor.convertProductFullToDto(productFull))
+                        .collect(Collectors.toList());
     }
 
     public Optional<ProductFullDto> getProductFullById(Long id) {
@@ -58,10 +65,10 @@ public class ProductService {
         List<CategoryBrief> categoryBriefList = new ArrayList<>();
         newProductDto.getCategoriesNumberList().stream()
                 .forEach(id -> {
-                   Optional<CategoryBrief> categoryBriefOptional = categoryBriefRepo.findById(id);
-                   if (categoryBriefOptional.isPresent()){
-                       categoryBriefList.add(categoryBriefOptional.get());
-                   }
+                    Optional<CategoryBrief> categoryBriefOptional = categoryBriefRepo.findById(id);
+                    if (categoryBriefOptional.isPresent()) {
+                        categoryBriefList.add(categoryBriefOptional.get());
+                    }
                 });
 
         productFull.setCategoryBriefList(categoryBriefList);
