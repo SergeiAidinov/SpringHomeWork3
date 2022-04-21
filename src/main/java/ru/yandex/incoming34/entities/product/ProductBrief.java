@@ -3,6 +3,7 @@ package ru.yandex.incoming34.entities.product;
 import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class ProductBrief extends AbstractProduct {
     /*
     @Id

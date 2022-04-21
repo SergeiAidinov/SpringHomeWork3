@@ -7,7 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import ru.yandex.incoming34.entities.product.AbstractProduct;
 import ru.yandex.incoming34.entities.product.ProductBrief;
 import ru.yandex.incoming34.entities.product.ProductFull;
 
@@ -16,7 +15,7 @@ import java.util.Optional;
 
 @PropertySource("classpath:SpringHomeWork3.properties")
 @Repository
-public interface ProductsRepo extends CrudRepository<AbstractProduct, Long>{
+public interface ProductsRepo extends CrudRepository<ProductFull, Long>{
 String queryForProductById = "SELECT product_id, product_name, price FROM product WHERE product_id = ?1";
 String queryForAllProduct = "SELECT product_id, product_name, price FROM product";
 

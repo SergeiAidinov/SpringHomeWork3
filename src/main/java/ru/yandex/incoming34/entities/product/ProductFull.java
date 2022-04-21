@@ -6,8 +6,13 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "category")
-public class ProductFull extends AbstractProduct {
+@Table(name = "product")
+public class ProductFull /*extends ProductBrief*/ {
+
+    @Id
+    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
 
     @Column(name = "product_name")
     private String name;
@@ -15,7 +20,9 @@ public class ProductFull extends AbstractProduct {
     @Column(name = "price")
     private Integer price;
 
+
     @ManyToMany
+
     @JoinTable(
             name = "link_product_category",
             joinColumns = @JoinColumn(name = "product_id"),
@@ -26,8 +33,12 @@ public class ProductFull extends AbstractProduct {
 
     }
 
-    public ProductFull(List<CategoryBrief> categoryBriefList) {
-        this.categoryBriefList = categoryBriefList;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -42,6 +53,7 @@ public class ProductFull extends AbstractProduct {
         return price;
     }
 
+
     public void setPrice(Integer price) {
         this.price = price;
     }
@@ -50,7 +62,7 @@ public class ProductFull extends AbstractProduct {
         return categoryBriefList;
     }
 
-    public void setCategoryBrifList(List<CategoryBrief> categoryBriefList) {
+    public void setCategoryBriefList(List<CategoryBrief> categoryBriefList) {
         this.categoryBriefList = categoryBriefList;
     }
 }

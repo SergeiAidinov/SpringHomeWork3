@@ -1,12 +1,8 @@
 package ru.yandex.incoming34.entities.category;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "category")
 public abstract class AbstractCategory {
 
     @Id

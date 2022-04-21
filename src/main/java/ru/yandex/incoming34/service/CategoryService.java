@@ -12,12 +12,13 @@ public class CategoryService {
     @Autowired
     CategoryRepo categoryRepo;
 
+
     public Iterable<Category> getAllCategories() {
 
         return categoryRepo.findAllCategories();
     }
 
-    public Iterable<CategoryBrief> getAllBriefCategories() {
+    public Iterable<Category> getAllBriefCategories() {
 
         return categoryRepo.findAllBriefCategories();
     }

@@ -7,9 +7,11 @@ import ru.yandex.incoming34.dto.ProductBriefDto;
 import ru.yandex.incoming34.dto.ProductFullDto;
 import ru.yandex.incoming34.entities.category.CategoryBrief;
 import ru.yandex.incoming34.entities.product.ProductFull;
+import ru.yandex.incoming34.repo.CategoryBriefRepo;
 import ru.yandex.incoming34.repo.CategoryRepo;
 import ru.yandex.incoming34.repo.ProductsRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,13 +21,15 @@ public class ProductService {
 
     private final ProductsRepo productRepo;
     private final CategoryRepo categoryRepo;
+    private final CategoryBriefRepo categoryBriefRepo;
     private final Convertor convertor;
 
     @Autowired
-    public ProductService(ProductsRepo productRepo, Convertor convertor, CategoryRepo categoryRepo) {
+    public ProductService(ProductsRepo productRepo, Convertor convertor, CategoryRepo categoryRepo, CategoryBriefRepo categoryBriefRepo) {
         this.productRepo = productRepo;
         this.convertor = convertor;
         this.categoryRepo =  categoryRepo;
+        this.categoryBriefRepo = categoryBriefRepo;
     }
 
     public List<ProductBriefDto> showAllBriefProducts() {
@@ -51,12 +55,19 @@ public class ProductService {
 
     public void putProduct(NewProductDto newProductDto) {
         ProductFull productFull = convertor.convertNewProductToProductFull(newProductDto);
-        List<CategoryBrief> categoryBriefList = newProductDto.getCategoriesNumberList().stream()
-                .map(id -> categoryRepo.findBriefCategoryById(id)).collect(Collectors.toList());
-        productFull.setCategoryBrifList(categoryBriefList);
-        productRepo.saveProductBrief(productFull.getName(), productFull.getPrice());
-        //productRepo.saveProductBrief()
-        //productRepo.save(productFull);
+        List<CategoryBrief> categoryBriefList = new ArrayList<>();
+        newProductDto.getCategoriesNumberList().stream()
+                .forEach(id -> {
+                   Optional<CategoryBrief> categoryBriefOptional = categoryBriefRepo.findById(id);
+                   if (categoryBriefOptional.isPresent()){
+                       categoryBriefList.add(categoryBriefOptional.get());
+                   }
+                });
+
+        productFull.setCategoryBriefList(categoryBriefList);
+        //productRepo.saveProductBrief(productFull.getName(), productFull.getPrice());
+        //productRepo.saveProductBrief(productFull.getName(), productFull.getPrice());
+        productRepo.save(productFull);
         System.out.println(categoryBriefList);
     }
 

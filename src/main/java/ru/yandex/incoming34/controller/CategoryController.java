@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.incoming34.entities.category.Category;
 import ru.yandex.incoming34.entities.category.CategoryBrief;
+import ru.yandex.incoming34.repo.CategoryBriefRepo;
 import ru.yandex.incoming34.service.CategoryService;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class CategoryController {
 
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    CategoryBriefRepo categoryBriefRepo;
 
     @GetMapping("/all_categories_with__goods")
     public List<Category> getAllCategories() {
@@ -28,7 +31,7 @@ public class CategoryController {
     @GetMapping("/all-brief-categories")
     public List<CategoryBrief> getAllBriefCategories() {
         List<CategoryBrief> categoryBriefList = new ArrayList<>();
-        categoryService.getAllBriefCategories().forEach(categoryBriefList::add);
+        categoryBriefRepo.findAll().forEach(categoryBriefList::add);
         return categoryBriefList;
     }
 

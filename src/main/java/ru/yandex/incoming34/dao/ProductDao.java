@@ -1,13 +1,11 @@
 package ru.yandex.incoming34.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.yandex.incoming34.entities.product.AbstractProduct;
 import ru.yandex.incoming34.entities.product.ProductFull;
 import ru.yandex.incoming34.repo.ProductsRepo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @org.springframework.stereotype.Service
 public class ProductDao {
@@ -33,11 +31,6 @@ public class ProductDao {
 			productsRepo.deleteById(productFull.getId());
 			productsRepo.save(productFull);
 		}
-
-	}
-
-	public Optional<AbstractProduct> getProduct(Long id)  {
-		return productsRepo.findById(id);
 
 	}
 
