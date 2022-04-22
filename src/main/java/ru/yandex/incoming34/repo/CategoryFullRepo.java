@@ -8,7 +8,7 @@ import ru.yandex.incoming34.entities.category.Category;
 
 @PropertySource("classpath:SpringHomeWork3.properties")
 @Repository
-public  interface CategoryRepo extends CrudRepository <Category, Long>{
+public  interface CategoryFullRepo extends CrudRepository <Category, Long>{
 
     @Query(nativeQuery = true, value = "SELECT category_id, category_name FROM category")
     Iterable<Category> findAllCategories();

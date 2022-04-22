@@ -42,7 +42,7 @@ public class ProductController {
 		return productService.showAllProductsWithCategories();
 	}
 
-	@RequestMapping(path = "/delete_products", method = RequestMethod.GET)
+	@RequestMapping(path = "/delete_product", method = RequestMethod.GET)
 	public void deleteProduct(@RequestParam Long id) {
 				productService.removeProductById(id);
 	}

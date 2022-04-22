@@ -2,25 +2,28 @@ package ru.yandex.incoming34.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.yandex.incoming34.dao.CategoryDao;
 import ru.yandex.incoming34.entities.category.Category;
 import ru.yandex.incoming34.entities.category.CategoryBrief;
-import ru.yandex.incoming34.repo.CategoryRepo;
 
 @Service
 public class CategoryService {
 
-    @Autowired
-    CategoryRepo categoryRepo;
+    private final CategoryDao categoryDao;
 
+    @Autowired
+    public CategoryService(CategoryDao categoryDao) {
+        this.categoryDao = categoryDao;
+    }
 
     public Iterable<Category> getAllCategories() {
 
-        return categoryRepo.findAllCategories();
+        return categoryDao.findAllCategories();
     }
 
-    public Iterable<Category> getAllBriefCategories() {
+    public Iterable<CategoryBrief> getAllBriefCategories() {
 
-        return categoryRepo.findAllBriefCategories();
+        return categoryDao.findAllBriefCategories();
     }
 }
 

@@ -1,47 +1,67 @@
 package ru.yandex.incoming34.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import ru.yandex.incoming34.entities.product.ProductBrief;
 import ru.yandex.incoming34.entities.product.ProductFull;
-import ru.yandex.incoming34.repo.ProductsRepo;
+import ru.yandex.incoming34.repo.ProductBriefRepo;
+import ru.yandex.incoming34.repo.ProductFullRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.stereotype.Service
 public class ProductDao {
 	
-	ProductsRepo productsRepo;
+	private final ProductFullRepo productFullRepo;
+	private final ProductBriefRepo productBriefRepo;
 	
 	@Autowired
-	public ProductDao(ProductsRepo productsRepo) {
-		this.productsRepo = productsRepo;
+	public ProductDao(ProductFullRepo productFullRepo, ProductBriefRepo productBriefRepo) {
+		this.productFullRepo = productFullRepo;
+		this.productBriefRepo = productBriefRepo;
 	}
 
 	public List<ProductFull> getProducts() {
-		Iterable<ProductFull> iterable = productsRepo.findAllFullProducts();
+		Iterable<ProductFull> iterable = productFullRepo.findAllFullProducts();
 		List<ProductFull> products = new ArrayList<ProductFull>();
 				iterable.forEach(p -> products.add(p));
 		return products;
 	}
 
 	public void putProduct(ProductFull productFull) {
-		if (productsRepo.countById(productFull.getId()) == 0) {
-			productsRepo.save(productFull);
+		if (productFullRepo.countById(productFull.getId()) == 0) {
+			productFullRepo.save(productFull);
 		} else {
-			productsRepo.deleteById(productFull.getId());
-			productsRepo.save(productFull);
+			productFullRepo.deleteById(productFull.getId());
+			productFullRepo.save(productFull);
 		}
 
 	}
 
 	public void removeProductById(Long id) {
-		productsRepo.deleteById(id);
+		productFullRepo.deleteById(id);
 		
 	}
 
 	public void countById(Long id) {
-		productsRepo.countById(id);
+		productFullRepo.countById(id);
 		
 	}
 
+    public List<ProductBrief> findAllProductBrief() {
+		return (List<ProductBrief>) productBriefRepo.findAll();
+    }
+
+	public List<ProductFull> findAllProductsFull() {
+		return  (List<ProductFull>) productFullRepo.findAll();
+	}
+
+	public Optional<ProductFull> findProductFullById(Long id) {
+		return productFullRepo.findProductFullById(id);
+	}
+
+	public void saveProductFull(ProductFull productFull) {
+		productFullRepo.save(productFull);
+	}
 }

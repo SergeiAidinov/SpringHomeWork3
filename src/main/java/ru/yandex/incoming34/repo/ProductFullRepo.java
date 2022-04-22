@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @PropertySource("classpath:SpringHomeWork3.properties")
 @Repository
-public interface ProductsRepo extends CrudRepository<ProductFull, Long>{
+public interface ProductFullRepo extends CrudRepository<ProductFull, Long>{
 String queryForProductById = "SELECT product_id, product_name, price FROM product WHERE product_id = ?1";
 String queryForAllProduct = "SELECT product_id, product_name, price FROM product";
 
