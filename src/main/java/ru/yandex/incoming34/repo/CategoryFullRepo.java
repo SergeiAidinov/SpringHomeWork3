@@ -4,19 +4,19 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import ru.yandex.incoming34.entities.category.Category;
+import ru.yandex.incoming34.entities.category.CategoryFull;
 
 @PropertySource("classpath:SpringHomeWork3.properties")
 @Repository
-public  interface CategoryFullRepo extends CrudRepository <Category, Long>{
+public  interface CategoryFullRepo extends CrudRepository <CategoryFull, Long>{
 
     @Query(nativeQuery = true, value = "SELECT category_id, category_name FROM category")
-    Iterable<Category> findAllCategories();
+    Iterable<CategoryFull> findAllCategories();
 
     @Query(nativeQuery = true, value = "SELECT category_id, category_name FROM category")
-    Iterable<Category> findAllBriefCategories();
+    Iterable<CategoryFull> findAllBriefCategories();
 
     @Query(nativeQuery = true, value = "SELECT category_id, category_name FROM category WHERE category_id = ?1")
-    Category findBriefCategoryById(Long id);
+    CategoryFull findBriefCategoryById(Long id);
 
 }

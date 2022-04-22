@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.yandex.incoming34.dao.ProductDao;
 import ru.yandex.incoming34.dto.NewProductDto;
 import ru.yandex.incoming34.dto.ProductBriefDto;
 import ru.yandex.incoming34.dto.ProductFullDto;
@@ -22,14 +21,11 @@ import java.util.List;
 @RequestMapping("/api/product")
 public class ProductController {
 	
-	//private final ProductDao productDao;
 	private final ProductService productService;
 
 	@Autowired
-	public ProductController(ProductDao productDao, ProductService productService) {
+	public ProductController(ProductService productService) {
 		this.productService = productService;
-		//this.productDao = productDao;
-		
 	}
 
 	@RequestMapping(path = "/all_brief_products", method = RequestMethod.GET)

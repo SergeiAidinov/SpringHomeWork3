@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name ="product")
-public class ProductBrief /*extends AbstractProduct*/ {
+public class ProductBrief {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,6 @@ public class ProductBrief /*extends AbstractProduct*/ {
     public void setId(Long id) {
         this.id = id;
     }
-
-
 
     @Column(name = "product_name")
     private String name;

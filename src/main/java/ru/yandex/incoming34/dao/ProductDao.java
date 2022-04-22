@@ -50,18 +50,22 @@ public class ProductDao {
 	}
 
     public List<ProductBrief> findAllProductBrief() {
+
 		return (List<ProductBrief>) productBriefRepo.findAll();
     }
 
 	public List<ProductFull> findAllProductsFull() {
+
 		return  (List<ProductFull>) productFullRepo.findAll();
 	}
 
 	public Optional<ProductFull> findProductFullById(Long id) {
+
 		return productFullRepo.findProductFullById(id);
 	}
 
 	public void saveProductFull(ProductFull productFull) {
+
 		productFullRepo.save(productFull);
 	}
 }

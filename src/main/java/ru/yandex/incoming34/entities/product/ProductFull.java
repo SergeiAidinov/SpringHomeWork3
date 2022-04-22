@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
-public class ProductFull /*extends ProductBrief*/ {
+public class ProductFull {
 
     @Id
     @Column(name = "product_id")
@@ -20,9 +20,7 @@ public class ProductFull /*extends ProductBrief*/ {
     @Column(name = "price")
     private Integer price;
 
-
     @ManyToMany
-
     @JoinTable(
             name = "link_product_category",
             joinColumns = @JoinColumn(name = "product_id"),

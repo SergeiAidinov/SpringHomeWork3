@@ -1,6 +1,5 @@
 package ru.yandex.incoming34.entities.category;
 
-import ru.yandex.incoming34.entities.category.AbstractCategory;
 import ru.yandex.incoming34.entities.product.ProductBrief;
 
 import javax.persistence.*;
@@ -8,14 +7,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "category")
-public class Category extends AbstractCategory {
+public class CategoryFull {
 
     @Id
     @Column(name = "category_id")
     private Long id;
 
     @Column(name = "category_name")
-    private String catergoryName;
+    private String categoryName;
 
     @ManyToMany
     @JoinTable(name = "link_product_category",
@@ -33,12 +32,12 @@ public class Category extends AbstractCategory {
         return id;
     }
 
-    public String getCatergoryName() {
-        return catergoryName;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCatergoryName(String catergoryName) {
-        this.catergoryName = catergoryName;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public List<ProductBrief> getProductList() {

@@ -65,7 +65,6 @@ public class ProductService {
 
         productFull.setCategoryBriefList(categoryBriefList);
         productDao.saveProductFull(productFull);
-        System.out.println(categoryBriefList);
     }
 
     public void removeProductById(Long id) {
