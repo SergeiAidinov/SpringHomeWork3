@@ -41,4 +41,12 @@ public class ProductBriefDto {
 		return price;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductBriefDto{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", price=" + price +
+				'}';
+	}
 }

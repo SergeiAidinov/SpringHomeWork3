@@ -68,4 +68,9 @@ public class ProductDao {
 
 		productFullRepo.save(productFull);
 	}
+
+    public Optional<ProductBrief> getProductBriefById(Integer id) {
+		Long longId = new Long(id);
+		return productBriefRepo.findById(longId);
+    }
 }
