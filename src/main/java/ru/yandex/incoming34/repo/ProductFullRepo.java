@@ -38,4 +38,5 @@ String queryForAllProduct = "SELECT product_id, product_name, price FROM product
 	@Transactional
 	@Query(nativeQuery = true, value = "INSERT INTO product (product_name, price) VALUES (:name, :price)")
 	void saveProductBrief(@Param("name") String name, @Param("price") Integer price);
+
 }

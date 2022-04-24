@@ -5,12 +5,12 @@ import ru.yandex.incoming34.components.Cart;
 import ru.yandex.incoming34.dto.CartDto;
 
 @Service
-public class CartSevice {
+public class CartService {
 
     private final Cart cart;
     private final Convertor convertor;
 
-    public CartSevice(Cart cart, Convertor convertor) {
+    public CartService(Cart cart, Convertor convertor) {
         this.cart = cart;
         this.convertor = convertor;
     }

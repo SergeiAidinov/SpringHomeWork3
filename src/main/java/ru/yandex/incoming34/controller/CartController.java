@@ -1,45 +1,40 @@
 package ru.yandex.incoming34.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.incoming34.components.Cart;
 import ru.yandex.incoming34.dto.CartDto;
-import ru.yandex.incoming34.service.CartSevice;
-import springfox.documentation.spring.web.json.Json;
-
-import java.util.Map;
+import ru.yandex.incoming34.service.CartService;
 
 @RestController
 @RequestMapping("/api/cart")
 public class CartController {
 
-    private final CartSevice cartSevice;
+    private final CartService cartService;
     private final JsonNodeFactory factory = JsonNodeFactory.instance;
 
-    public CartController(CartSevice cartSevice) {
-        this.cartSevice = cartSevice;
+    public CartController(CartService cartService) {
+        this.cartService = cartService;
     }
 
-    @PutMapping("/add_product")
+    @PutMapping("/product")
     public void addProduct(Integer id){
-        cartSevice.addProduct(id);
+        cartService.addProduct(id);
 
     }
 
     @GetMapping("/content")
-    public ResponseEntity<CartDto> getContent(){
-        CartDto cartDto = cartSevice.getContent();
+    public ResponseEntity getContent(){
+        CartDto cartDto = cartService.getContent();
         JsonNode json = factory.pojoNode(cartDto);
         return new ResponseEntity(json, HttpStatus.OK);
     }
 
-    @PutMapping("/remove_product")
+    @DeleteMapping("/product")
     public void removeProduct(Long id){
-        cartSevice.removeProduct(id);
+        cartService.removeProduct(id);
     }
 
 

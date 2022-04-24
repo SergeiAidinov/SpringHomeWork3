@@ -35,12 +35,12 @@ public class CategoryController {
         return categoryBriefList;
     }
 
-    @PutMapping("new_category")
+    @PutMapping("category")
     public void createCategory(CategoryBriefDto categoryBriefDto){
         categoryService.createCategory(categoryBriefDto);
     }
 
-    @DeleteMapping("redundant_category")
+    @DeleteMapping("category")
     public void removeCategory(Long id){
         categoryService.removeCategory(id);
     }

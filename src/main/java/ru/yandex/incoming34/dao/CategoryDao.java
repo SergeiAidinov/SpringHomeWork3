@@ -1,8 +1,6 @@
 package ru.yandex.incoming34.dao;
 
-import org.hibernate.StaleStateException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import ru.yandex.incoming34.entities.category.CategoryBrief;
 import ru.yandex.incoming34.entities.category.CategoryFull;
@@ -44,12 +42,7 @@ public class CategoryDao {
     }
 
     public void removeCategory(Long id) {
-        try {
+
             categoryFullRepo.deleteById(id);
-        } catch (StaleStateException exception) {
-            System.out.println(exception);
-        } catch (DataIntegrityViolationException exception) {
-            System.out.println(exception);
-        }
     }
 }

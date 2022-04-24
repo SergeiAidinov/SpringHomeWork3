@@ -20,7 +20,7 @@ public class ProductFull {
     @Column(name = "price")
     private Integer price;
 
-    @ManyToMany (cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "link_product_category",
             joinColumns = @JoinColumn(name = "product_id"),

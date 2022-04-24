@@ -32,7 +32,7 @@ public class CategoryService {
     }
 
     public List<CategoryBrief> findAllCategoryBrief() {
-        return (List<CategoryBrief>) categoryDao.findAllBriefCategories();
+        return categoryDao.findAllBriefCategories();
     }
 
     public void createCategory(CategoryBriefDto categoryBriefDto) {

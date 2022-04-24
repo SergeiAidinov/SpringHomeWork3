@@ -19,6 +19,5 @@
     <include
             file="/db/changelog/fillTables/fill-table-category.xml"/>
     <include file="/db/changelog/createLinks/create-links.xml"/>
-    <include file="/db/changelog/foreignKeys/add-foreign-key.xml"/>
 
 </databaseChangeLog> 
