@@ -37,5 +37,10 @@ public class CartController {
         cartService.removeProduct(id);
     }
 
+    @DeleteMapping("/all")
+    public void clearCart(){
+        cartService.clearCart();
+    }
+
 
 }

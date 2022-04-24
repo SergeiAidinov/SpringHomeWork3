@@ -5,7 +5,10 @@ import org.springframework.stereotype.Component;
 import ru.yandex.incoming34.dao.ProductDao;
 import ru.yandex.incoming34.entities.product.ProductBrief;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -79,4 +82,8 @@ public class Cart {
         return newTotalPrice.get();
     }
 
+    public void clearCart() {
+        cartTotalPrice = 0;
+        productBriefQuantityMap.clear();
+    }
 }

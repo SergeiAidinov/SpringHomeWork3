@@ -30,4 +30,7 @@ public class CartService {
         cart.removeProduct(id);
     }
 
+    public void clearCart() {
+        cart.clearCart();
+    }
 }
