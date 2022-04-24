@@ -40,7 +40,8 @@ public class ProductController {
 
 	@RequestMapping(path = "/delete_product", method = RequestMethod.GET)
 	public void deleteProduct(@RequestParam Long id) {
-				productService.removeProductById(id);
+
+		productService.removeProductById(id);
 	}
 
 	@RequestMapping(path = "/new_product", method = RequestMethod.PUT)

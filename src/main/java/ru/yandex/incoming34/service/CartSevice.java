@@ -21,7 +21,7 @@ public class CartSevice {
     }
 
     public CartDto getContent() {
-        CartDto cartDto = convertor.convertcartToCartDto(cart);
+        CartDto cartDto = convertor.convertCartToCartDto(cart);
         return cartDto;
     }
 

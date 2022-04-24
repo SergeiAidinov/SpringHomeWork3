@@ -6,8 +6,8 @@ id BIGINT AUTO_INCREMENT,
 product_id BIGINT,
 category_id BIGINT,
 PRIMARY KEY (id),
-FOREIGN KEY (category_id) REFERENCES category (category_id) ON UPDATE RESTRICT,
-FOREIGN KEY (product_id) REFERENCES product (product_id) ON UPDATE RESTRICT,
+FOREIGN KEY (category_id) REFERENCES category (category_id) ON UPDATE RESTRICT ON DELETE  CASCADE,
+FOREIGN KEY (product_id) REFERENCES product (product_id) ON UPDATE RESTRICT ON DELETE  CASCADE,
 UNIQUE KEY `link` (product_id, category_id)
 );
 

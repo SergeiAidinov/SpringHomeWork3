@@ -1,9 +1,6 @@
 package ru.yandex.incoming34.entities.category;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "category")
@@ -11,6 +8,7 @@ public class CategoryBrief {
 
     @Id
     @Column(name = "category_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "category_name")
