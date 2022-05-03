@@ -3,6 +3,7 @@
 
 INSERT INTO link_product_category (product_id, category_id) VALUES
 (1, 1),
+(1, 2),
 (17, 2),
 (20, 3)
 ;

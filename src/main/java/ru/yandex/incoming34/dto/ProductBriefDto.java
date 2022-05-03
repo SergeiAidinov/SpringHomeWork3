@@ -1,16 +1,16 @@
 package ru.yandex.incoming34.dto;
 
-public class ProductDto {
+public class ProductBriefDto {
 
 	private Long id;
 	private String name;
 	private Integer price;
 
-	public ProductDto() {
+	public ProductBriefDto() {
 
 	}
 
-	public ProductDto(Long id, String name, Integer price) {
+	public ProductBriefDto(Long id, String name, Integer price) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -41,4 +41,12 @@ public class ProductDto {
 		return price;
 	}
 
+	@Override
+	public String toString() {
+		return "ProductBriefDto{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", price=" + price +
+				'}';
+	}
 }
