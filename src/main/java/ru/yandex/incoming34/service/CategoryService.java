@@ -49,7 +49,6 @@ public class CategoryService {
     }
 
     public void refreshCategory(Long categoryId, CategoryBriefDto categoryBriefDto) {
-        //CategoryBrief categoryBrief = convertor.convertCategoryBriefDtoToCategoryBrief(categoryBriefDto);
         categoryBriefRepo.updateCategory(categoryBriefDto.getCatergoryName(), categoryId);
     }
 }
