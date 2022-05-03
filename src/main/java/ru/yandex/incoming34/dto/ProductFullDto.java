@@ -6,25 +6,20 @@ import java.util.List;
 
 public class ProductFullDto extends ProductBriefDto{
 
-    private List<CategoryBrief> categoryBriefList;
+    private List<CategoryBriefDto> categoryBriefDtoList;
 
     public ProductFullDto() {
     }
 
-    public ProductFullDto(List<CategoryBrief> categoryBriefList) {
-        this.categoryBriefList = categoryBriefList;
+    public ProductFullDto(List<CategoryBriefDto> categoryBriefList) {
+        this.categoryBriefDtoList = categoryBriefList;
     }
 
-    public ProductFullDto(Long id, String name, Integer price, List<CategoryBrief> categoryBriefList) {
-        super(id, name, price);
-        this.categoryBriefList = categoryBriefList;
+    public List<CategoryBriefDto> getCategoryBriefList() {
+        return categoryBriefDtoList;
     }
 
-    public List<CategoryBrief> getCategoryBriefList() {
-        return categoryBriefList;
-    }
-
-    public void setCategoryBriefList(List<CategoryBrief> categoryBriefList) {
-        this.categoryBriefList = categoryBriefList;
+    public void setCategoryBriefList(List<CategoryBriefDto> categoryBriefDtoList) {
+        this.categoryBriefDtoList = categoryBriefDtoList;
     }
 }
