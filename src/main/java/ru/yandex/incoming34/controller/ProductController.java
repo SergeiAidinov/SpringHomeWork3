@@ -41,7 +41,7 @@ public class ProductController {
 		productService.removeProductById(id);
 	}
 
-	@PutMapping()
+	@PostMapping()
 	public HttpStatus putProduct(@RequestBody NewProductDto newProductDto) {
 		productService.putProduct(newProductDto);
 		return HttpStatus.OK;
@@ -52,6 +52,11 @@ public class ProductController {
 		return productService.getProductFullById(id)
 				.map(productFullDto -> new ResponseEntity<>(productFullDto, HttpStatus.OK))
 				.orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
+	}
+
+	@PutMapping("/{id}")
+	public void modifyProduct(Long id, NewProductDto newProductDto){
+		productService.modifyProduct(id, newProductDto);
 	}
 
 }

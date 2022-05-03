@@ -7,6 +7,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import ru.yandex.incoming34.dto.NewProductDto;
+import ru.yandex.incoming34.entities.category.CategoryBrief;
 import ru.yandex.incoming34.entities.product.ProductBrief;
 import ru.yandex.incoming34.entities.product.ProductFull;
 
@@ -38,5 +40,11 @@ String queryForAllProduct = "SELECT product_id, product_name, price FROM product
 	@Transactional
 	@Query(nativeQuery = true, value = "INSERT INTO product (product_name, price) VALUES (:name, :price)")
 	void saveProductBrief(@Param("name") String name, @Param("price") Integer price);
+
+	@Modifying
+	@Transactional
+	@Query(nativeQuery = true, value = "UPDATE product p SET p.price = :price, p.product_name = :name WHERE p.product_id = :id")
+    void updateProductFull(@Param("id") Long id, @Param("name") String name, @Param("price") Integer price /*, @Param("categoryList")List<CategoryBrief> categoryBriefList*/);
+
 
 }
