@@ -6,43 +6,48 @@ import ru.yandex.incoming34.dao.CategoryDao;
 import ru.yandex.incoming34.dto.CategoryBriefDto;
 import ru.yandex.incoming34.entities.category.CategoryBrief;
 import ru.yandex.incoming34.entities.category.CategoryFull;
+import ru.yandex.incoming34.repo.CategoryBriefRepo;
+import ru.yandex.incoming34.repo.CategoryFullRepo;
 
 import java.util.List;
 
 @Service
 public class CategoryService {
 
-    private final CategoryDao categoryDao;
     private final Convertor convertor;
+    private final CategoryFullRepo categoryFullRepo;
+    private final CategoryBriefRepo categoryBriefRepo;
 
     @Autowired
-    public CategoryService(CategoryDao categoryDao, Convertor convertor) {
-        this.categoryDao = categoryDao;
+    public CategoryService(Convertor convertor, CategoryFullRepo categoryFullRepo, CategoryBriefRepo categoryBriefRepo) {
         this.convertor = convertor;
+        this.categoryFullRepo = categoryFullRepo;
+        this.categoryBriefRepo = categoryBriefRepo;
     }
 
-    public Iterable<CategoryFull> getAllCategories() {
+    public List<CategoryFull> getAllCategories() {
 
-        return categoryDao.findAllCategories();
+        return (List<CategoryFull>) categoryFullRepo.findAllCategories();
     }
 
-    public Iterable<CategoryBrief> getAllBriefCategories() {
+    public List<CategoryBrief> getAllBriefCategories() {
 
-        return categoryDao.findAllBriefCategories();
+        return (List<CategoryBrief>) categoryBriefRepo.findAll();
     }
 
     public List<CategoryBrief> findAllCategoryBrief() {
-        return categoryDao.findAllBriefCategories();
+        return (List<CategoryBrief>) categoryBriefRepo.findAll();
     }
 
     public void createCategory(CategoryBriefDto categoryBriefDto) {
         CategoryBrief categoryBrief = convertor.convertCategoryBriefDtoToCategoryBrief(categoryBriefDto);
-        categoryDao.saveCategoryBrief(categoryBrief);
+        categoryBriefRepo.save(categoryBrief);
 
     }
 
     public void removeCategory(Long id) {
-        categoryDao.removeCategory(id);
+
+        categoryBriefRepo.deleteById(id);
     }
 }
 

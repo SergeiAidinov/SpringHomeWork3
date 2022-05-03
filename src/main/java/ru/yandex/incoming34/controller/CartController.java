@@ -9,11 +9,13 @@ import ru.yandex.incoming34.dto.CartDto;
 import ru.yandex.incoming34.service.CartService;
 
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("api/v1/cart")
 public class CartController {
 
     private final CartService cartService;
     private final JsonNodeFactory factory = JsonNodeFactory.instance;
+
+
 
     public CartController(CartService cartService) {
         this.cartService = cartService;

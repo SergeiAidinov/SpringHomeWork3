@@ -5,10 +5,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.incoming34.dto.NewProductDto;
 import ru.yandex.incoming34.dto.ProductBriefDto;
 import ru.yandex.incoming34.dto.ProductFullDto;
@@ -18,7 +15,7 @@ import java.util.List;
 
 @Api
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api/v1/product")
 public class ProductController {
 	
 	private final ProductService productService;
@@ -28,29 +25,29 @@ public class ProductController {
 		this.productService = productService;
 	}
 
-	@RequestMapping(path = "/all_brief_products", method = RequestMethod.GET)
+	@GetMapping("/all_brief_products")
 	public List<ProductBriefDto> showProducts() {
 				return productService.showAllBriefProducts();
 	}
 
-	@RequestMapping(path = "/all_products_with_categories", method = RequestMethod.GET)
+	@GetMapping("/all_products_with_categories")
 	public List<ProductFullDto> showProductsWithCategories() {
 		return productService.showAllProductsWithCategories();
 	}
 
-	@RequestMapping(path = "/delete_product", method = RequestMethod.DELETE)
+	@DeleteMapping("/delete_product")
 	public void deleteProduct(@RequestParam Long id) {
 
 		productService.removeProductById(id);
 	}
 
-	@RequestMapping(path = "/new_product", method = RequestMethod.PUT)
+	@PutMapping("/new_product")
 	public HttpStatus putProduct(@RequestBody NewProductDto newProductDto) {
 		productService.putProduct(newProductDto);
 		return HttpStatus.OK;
 	}
 	
-	@RequestMapping(path = "/product_by_id", method = RequestMethod.GET)
+	@GetMapping("/product_by_id")
 	public ResponseEntity<ProductFullDto> getProduct(@RequestParam Long id) {
 		return productService.getProductFullById(id)
 				.map(productFullDto -> new ResponseEntity<>(productFullDto, HttpStatus.OK))

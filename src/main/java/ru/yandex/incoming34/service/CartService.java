@@ -17,7 +17,6 @@ public class CartService {
 
     public void addProduct(Integer id) {
         cart.addProduct(id);
-        System.out.println(cart);
     }
 
     public CartDto getContent() {
