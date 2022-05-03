@@ -35,19 +35,19 @@ public class ProductController {
 		return productService.showAllProductsWithCategories();
 	}
 
-	@DeleteMapping("/delete_product")
+	@DeleteMapping("/{id}")
 	public void deleteProduct(@RequestParam Long id) {
 
 		productService.removeProductById(id);
 	}
 
-	@PutMapping("/new_product")
+	@PutMapping()
 	public HttpStatus putProduct(@RequestBody NewProductDto newProductDto) {
 		productService.putProduct(newProductDto);
 		return HttpStatus.OK;
 	}
 	
-	@GetMapping("/product_by_id")
+	@GetMapping("/{id}")
 	public ResponseEntity<ProductFullDto> getProduct(@RequestParam Long id) {
 		return productService.getProductFullById(id)
 				.map(productFullDto -> new ResponseEntity<>(productFullDto, HttpStatus.OK))

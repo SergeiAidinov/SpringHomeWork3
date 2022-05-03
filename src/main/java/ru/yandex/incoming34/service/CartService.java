@@ -15,7 +15,7 @@ public class CartService {
         this.convertor = convertor;
     }
 
-    public void addProduct(Integer id) {
+    public void addProduct(Long id) {
         cart.addProduct(id);
     }
 

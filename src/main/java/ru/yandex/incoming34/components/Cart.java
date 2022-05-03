@@ -2,8 +2,8 @@ package ru.yandex.incoming34.components;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.yandex.incoming34.dao.ProductDao;
 import ru.yandex.incoming34.entities.product.ProductBrief;
+import ru.yandex.incoming34.repo.ProductBriefRepo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +17,11 @@ public class Cart {
 
     private Integer cartTotalPrice = 0;
     private final Map<ProductBrief, Integer> productBriefQuantityMap = new HashMap<>();
-    private final ProductDao productDao;
+    private final ProductBriefRepo productBriefRepo;
 
     @Autowired
-    public Cart(ProductDao productDao) {
-        this.productDao = productDao;
+    public Cart(ProductBriefRepo productBriefRepo) {
+        this.productBriefRepo = productBriefRepo;
     }
 
     public Integer getCartTotalPrice() {
@@ -32,8 +32,8 @@ public class Cart {
         return productBriefQuantityMap;
     }
 
-    public void addProduct(Integer id) {
-        Optional<ProductBrief> productBriefOptional = productDao.getProductBriefById(id);
+    public void addProduct(Long id) {
+        Optional<ProductBrief> productBriefOptional = productBriefRepo.findById(id);
         if (productBriefOptional.isPresent()) {
             if (productBriefQuantityMap.containsKey(productBriefOptional.get())) {
                 Integer newQuantity = productBriefQuantityMap.get(productBriefOptional.get()) + 1;

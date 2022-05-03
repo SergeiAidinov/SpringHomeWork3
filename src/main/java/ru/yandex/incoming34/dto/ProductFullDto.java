@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ProductFullDto extends ProductBriefDto{
 
-    List<CategoryBrief> categoryBriefList;
+    private List<CategoryBrief> categoryBriefList;
 
     public ProductFullDto() {
     }

@@ -31,7 +31,7 @@ public class CategoryController {
     @GetMapping("/all-brief-categories")
     public List<CategoryBrief> getAllBriefCategories() {
         List<CategoryBrief> categoryBriefList = new ArrayList<>();
-        categoryService.findAllCategoryBrief().forEach(categoryBriefList::add);
+        categoryService.getAllBriefCategories().forEach(categoryBriefList::add);
         return categoryBriefList;
     }
 

@@ -2,7 +2,6 @@ package ru.yandex.incoming34.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.yandex.incoming34.dao.CategoryDao;
 import ru.yandex.incoming34.dto.CategoryBriefDto;
 import ru.yandex.incoming34.entities.category.CategoryBrief;
 import ru.yandex.incoming34.entities.category.CategoryFull;
@@ -31,11 +30,6 @@ public class CategoryService {
     }
 
     public List<CategoryBrief> getAllBriefCategories() {
-
-        return (List<CategoryBrief>) categoryBriefRepo.findAll();
-    }
-
-    public List<CategoryBrief> findAllCategoryBrief() {
         return (List<CategoryBrief>) categoryBriefRepo.findAll();
     }
 
@@ -48,6 +42,10 @@ public class CategoryService {
     public void removeCategory(Long id) {
 
         categoryBriefRepo.deleteById(id);
+    }
+
+    public List<CategoryBrief> getAllBriefCategoriesByIds(List<Long> categoriesNumberList) {
+        return (List<CategoryBrief>) categoryBriefRepo.findAllById(categoriesNumberList);
     }
 }
 
