@@ -35,7 +35,7 @@ public class CategoryController {
         return categoryBriefList;
     }
 
-    @PutMapping("category")
+    @PostMapping("category")
     public void createCategory(CategoryBriefDto categoryBriefDto){
         categoryService.createCategory(categoryBriefDto);
     }
@@ -43,6 +43,11 @@ public class CategoryController {
     @DeleteMapping("category")
     public void removeCategory(Long id){
         categoryService.removeCategory(id);
+    }
+
+    @PutMapping("category")
+    public void refreshCategory(Long categoryId, CategoryBriefDto categoryBriefDto){
+        categoryService.refreshCategory(categoryId, categoryBriefDto);
     }
 
 }

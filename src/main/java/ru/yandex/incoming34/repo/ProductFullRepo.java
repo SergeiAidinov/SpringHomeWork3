@@ -44,7 +44,7 @@ String queryForAllProduct = "SELECT product_id, product_name, price FROM product
 	@Modifying
 	@Transactional
 	@Query(nativeQuery = true, value = "UPDATE product p SET p.price = :price, p.product_name = :name WHERE p.product_id = :id")
-    void updateProductFull(@Param("id") Long id, @Param("name") String name, @Param("price") Integer price /*, @Param("categoryList")List<CategoryBrief> categoryBriefList*/);
+    void updateProductFull(@Param("id") Long id, @Param("name") String name, @Param("price") Integer price);
 
 
 }

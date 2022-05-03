@@ -47,5 +47,10 @@ public class CategoryService {
     public List<CategoryBrief> getAllBriefCategoriesByIds(List<Long> categoriesNumberList) {
         return (List<CategoryBrief>) categoryBriefRepo.findAllById(categoriesNumberList);
     }
+
+    public void refreshCategory(Long categoryId, CategoryBriefDto categoryBriefDto) {
+        //CategoryBrief categoryBrief = convertor.convertCategoryBriefDtoToCategoryBrief(categoryBriefDto);
+        categoryBriefRepo.updateCategory(categoryBriefDto.getCatergoryName(), categoryId);
+    }
 }
 
